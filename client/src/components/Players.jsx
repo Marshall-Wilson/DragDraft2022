@@ -21,8 +21,7 @@ const Players = () => {
                 method: 'GET'
             })
             .then(res => res.json()
-            .then(playersList => setPlayers(playersList))
-            )
+                .then(playersList => setPlayers(playersList)))          
         })
         )
         .catch(err => console.log(err));

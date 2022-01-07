@@ -12,6 +12,7 @@ import Admin from "./components/Admin.jsx"
 import PlayerSignup from "./components/PlayerSignup.jsx";
 import Players from "./components/Players.jsx"
 import Weeks from "./components/Weeks.jsx"
+import About from "./components/About.jsx"
 import "./app.css"
 
 const RouterContainer = () => {
@@ -26,6 +27,7 @@ const RouterContainer = () => {
                 <Route path="/signup" element={<PlayerSignup />}/>
                 <Route path="/players" element={<Players />}/>
                 <Route path="/weeks" element={<Weeks />}/>
+                <Route path="/rules" element={<About />}/>
             </Routes>
         </Router>
     )
