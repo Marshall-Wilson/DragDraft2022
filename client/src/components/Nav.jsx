@@ -1,17 +1,20 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import Menu from 'react-burger-menu/lib/menus/slide'
 
 const Nav = () => {
     return (
-        <div>
-            <h1>Drag Draft Season 14</h1>
-            <Link to='/'>Home</Link>
-            <Link to='/queens'>Queens</Link>
-            <Link to='/players'>Players</Link>
-            <Link to='/weeks'>Weeks</Link>
-            <Link to='/signup'>Sign Up</Link>
-            <Link to='/rules'>Rules</Link>
-        </div>
+        <nav>
+            <img src="/images/rpdr_bracket_logo.png" className="logo" alt="Drag Draft Logo"/>
+            <Menu right>
+                <Link to='/'>Home</Link>
+                <Link to='/queens'>Queens</Link>
+                <Link to='/players'>Players</Link>
+                <Link to='/weeks'>Weeks</Link>
+                <Link to='/signup'>Sign Up</Link>
+                <Link to='/rules'>Rules</Link>
+            </Menu>      
+        </nav>
     )
 }
 

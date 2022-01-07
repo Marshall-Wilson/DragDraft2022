@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link} from "react-router-dom"
+import QueenRow from "./QueenRow.jsx"
 
 const Queens = () => {
     const [queens, setQueens] = useState([]);
@@ -15,13 +15,11 @@ const Queens = () => {
     }, [])
 
     return (
-        <div>
-            {queens.map((queen, i) => {
+        <div className="queenContainer pageContainer">
+            <h2>Queens</h2>
+            {queens.map((queen) => {
                 return (
-                    <div className="queensQueen" key={i}>
-                        <Link to={`/queens/${queen.queen_id}`}>{queen.queen_name}</Link>   
-                        <p>Total Points: {queen.total_points}</p>
-                    </div>
+                    <QueenRow queen={queen}/>
                 )
             })}
         </div>

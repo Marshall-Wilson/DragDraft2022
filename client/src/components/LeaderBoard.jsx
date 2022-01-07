@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import PlayerRow from "./PlayerRow.jsx"
 
 const LeaderBoard = () => {
     const [players, setPlayers] = useState([]);
@@ -14,14 +15,11 @@ const LeaderBoard = () => {
     }, [])
 
     return (
-        <div className="ldb">
-            <h2>Leaderboard</h2>
-            {players.map((player, idx) => {
+        <div className="ldb pageContainer">
+            <h2>Player Rankings</h2>
+            {players.sort((a, b) =>b.player_points - a.player_points).map((player, i) => {
                 return (
-                    <div className="ldbPlayer" key={player.player_id}>
-                        <h3>{player.player_name}</h3>
-                        <p>{player.player_points}</p>
-                    </div>
+                    <PlayerRow player={player} top={i===0} key={player.player_id}/>
                 )
             })}
         </div>

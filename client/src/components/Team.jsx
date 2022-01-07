@@ -1,22 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-
+import QueenRow from "./QueenRow.jsx"
 
 const Team = ({player, queens}) => {
     const team = queens.filter(elmt => player.player_queens.includes(elmt.queen_id))
 
     return (
-        <div className="playerTeam">
-            <h3>Team</h3>
-            {team.map(queen => {
-                return(
-                    <div key={queen.queen_id}>
-                        <Link to={`/queens/${queen.queen_id}`}>{queen.queen_name}:</Link>
-                        <p>{queen.total_points}</p>
-                    </div>)
-                })
-            }
-            <p>Total Points: {player.player_points}</p>
+        <div className="playerTeam queenContainer">
+            {team.map(queen => <QueenRow queen={queen}/>)}
+            <p className="teamPoints">Total Points: {player.player_points.toLocaleString('en-US', {minimumIntegerDigits: 2})}</p>
         </div>
     )
 }

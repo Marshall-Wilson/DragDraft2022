@@ -25,6 +25,7 @@ const PlayerSignup = () => {
         } else {
             newFormState.playerQueens[idx] = !newFormState.playerQueens[idx];
         }
+        console.log(newFormState);
         setFormState(newFormState);
     }
 
@@ -65,17 +66,19 @@ const PlayerSignup = () => {
     }, [])
 
     return (
-        <div>
+        <div className="pageContainer">
+            <h2>Sign Up</h2>
             <form onSubmit={handleSubmit}>
-                <label className="formLabel formText">Your Name:
+                <label className="formLabel formText">Name
                     <input type="text" value={formState.name} id="name" name="name" onChange={handleNameChange}/>
                 </label>
-                <label className="formLabel formCheckboxContainer">Choose Your 5 Queens:
+                <label className="formLabel formCheckboxContainer">Choose 5 Queens
                     {queens.map((queen, idx) => {
                         return (
-                            <label key={queen.queen_id} className="formCheckbox"> {queen.queen_name}
-                                <input type="checkbox" id={idx} name="queen" value={queen.queen_name} checked={formState.playerQueens[idx]} onChange={() => handleCheckChange(idx)}/>
-                            </label>
+                            <div className="checkboxRow" key={queen.queen_id}>
+                                <input type="checkbox" id={idx} name="queen" value={queen.queen_name} checked={formState.playerQueens[idx]} onClick={() => handleCheckChange(idx)}/>
+                                <label key={queen.queen_id} className="formCheckbox"> {queen.queen_name}</label>
+                            </div>
                         )
                     })}
                 </label>

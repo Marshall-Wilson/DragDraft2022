@@ -9,7 +9,7 @@ const Weeks = () => {
 
     const handleChange = (e) => {
         setSelected(e.target.value);
-        setSelectedWeek(weeks.find(week => week.week_id == e.target.value));
+        setSelectedWeek(weeks.find(week => week.week_id === Number(e.target.value)));
     }
 
     useEffect(() => {
@@ -31,7 +31,8 @@ const Weeks = () => {
     }, [])
 
     return (
-        <div>
+        <div className="weeks pageContainer">
+            <h2>Week</h2>
             <select name="weeks" id="weeks" value={selected}onChange={handleChange}>
                 <option value={''}>----------</option>
                 {weeks.map(week => {

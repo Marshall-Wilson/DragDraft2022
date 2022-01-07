@@ -29,15 +29,14 @@ const Players = () => {
 
 
     return (
-        <div>
+        <div className="players pageContainer">
+            <h2>Team</h2>
             <select name="players" id="players" value={selected}onChange={handleChange}>
                 <option value={''}>----------</option>
                 {players.map(player => <option value={player.player_id} key={player.player_id}>{player.player_name}</option>)}
             </select>
             {players && selected ? 
-                <div>
-                    <Team player={players.find(player => player.player_id == selected)} queens={queens}/>
-                </div>            
+                <Team player={players.find(player => player.player_id === Number(selected))} queens={queens}/>
                 : null
             }
         </div>
