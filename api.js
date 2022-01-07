@@ -1,6 +1,6 @@
 const express = require('express'); // import express module (simplifies routing/requests, among other things)
 const cors = require('cors'); // import the CORS library to allow Cross-origin resource sharing
-const bodyParser = require('body-parser');
+const path = require("path");
 const updateScores = require('./services.js')
 
 const app = express(); // create an instance of the express module (app is the conventional variable name used)
@@ -10,6 +10,11 @@ const pool = require('./db.js');
 //middleware
 app.use(cors()); // Enable CORS 
 app.use(express.json()); // Recognize Request Objects as JSON objects
+
+// Serve production build
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 // Get All Queens
 app.get('/api/queens', (req, res) => {
@@ -87,10 +92,7 @@ app.post('/api/players', (req, res) => {
 
 });
 
-if (process.env.NODE_ENV === 'production') {
-    app.use('*', express.static('client/build'));
-}
-
+// Start api server
 app.listen(PORT, () => { // start server and listen on specified port
     console.log(`App is running on ${PORT}`) // confirm server is running and log port to the console
 })
