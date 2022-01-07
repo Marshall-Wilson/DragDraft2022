@@ -4,7 +4,7 @@ const QueenInfo = ({queen}) => {
     return (
         <div>
             <h1>{queen.queen_name}</h1>
-            <img src={`/images/${queen.queen_id}.jpg`} alt={queen.queen_name} onError={({ target }) => {
+            <img src={`/images/full_promo/${queen.queen_name.toLowerCase().slice(0, 4)}.jpg`} alt={queen.queen_name} onError={({ target }) => {
                 target.onError = null; // prevents looping
                 target.src="/images/S14Logo.webp";
             }}/>
