@@ -39,7 +39,7 @@ const Admin = () => {
                 data[field] = data[field].filter((elmt) => elmt);
             }
         }
-        fetch('http://localhost:9000/api/weeks', {
+        fetch('/api/weeks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const Admin = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:9000/api/queens', {
+        fetch('/api/queens', {
             method: 'GET'
         })
         .then(res => res.json()

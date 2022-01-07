@@ -13,13 +13,13 @@ const Weeks = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:9000/api/queens', {
+        fetch('/api/queens', {
             method: 'GET'
         })
         .then(res => res.json()
         .then(queensList => {
             setQueens(queensList);
-            fetch('http://localhost:9000/api/weeks', {
+            fetch('/api/weeks', {
                 method: 'GET'
             })
             .then(res => res.json()

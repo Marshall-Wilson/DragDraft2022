@@ -26,6 +26,8 @@ const WeekInfo = ({week, queens}) => {
                             })}
                         </div>
                     )
+                } else {
+                    return null;
                 }
             })}
         </div>

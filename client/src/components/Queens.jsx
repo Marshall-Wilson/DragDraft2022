@@ -5,7 +5,7 @@ const Queens = () => {
     const [queens, setQueens] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:9000/api/queens', {
+        fetch('/api/queens', {
             method: 'GET'
         })
         .then(res => res.json()

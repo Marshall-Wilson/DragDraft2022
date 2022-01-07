@@ -4,7 +4,7 @@ const LeaderBoard = () => {
     const [players, setPlayers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:9000/api/players', {
+        fetch('/api/players', {
                 method: 'GET'
         })
         .then(res => res.json()

@@ -40,7 +40,7 @@ const PlayerSignup = () => {
         })
         data.playerQueens = data.playerQueens.filter((elmt) => elmt);
         if (data.name && data.playerQueens.length === 5) {
-            fetch('http://localhost:9000/api/players', {
+            fetch('/api/players', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ const PlayerSignup = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:9000/api/queens', {
+        fetch('/api/queens', {
             method: 'GET'
         })
         .then(res => res.json()

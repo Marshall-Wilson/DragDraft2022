@@ -7,7 +7,7 @@ const QueenInfoContainer = () => {
     const [queen, setQueen] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:9000/api/queens/${params.queenid}`, {method: 'GET'})
+        fetch(`/api/queens/${params.queenid}`, {method: 'GET'})
         .then(res => res.json())
         .then(resQueen => setQueen(resQueen));
     }, [params])
