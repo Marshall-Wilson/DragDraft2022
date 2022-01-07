@@ -13,7 +13,7 @@ import PlayerSignup from "./components/PlayerSignup.jsx";
 import Players from "./components/Players.jsx"
 import Weeks from "./components/Weeks.jsx"
 import About from "./components/About.jsx"
-import "./app.css"
+// import "./app.css"
 
 const RouterContainer = () => {
     return (
