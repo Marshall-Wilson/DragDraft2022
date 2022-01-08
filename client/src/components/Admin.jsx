@@ -19,14 +19,14 @@ const Admin = () => {
     }
 
     const handleCheckChange = (name, idx) => {
-        let newFormState = structuredClone(formState);
+        let newFormState = Object.assign({}, formState);
         newFormState[name][idx] = !newFormState[name][idx];
         setFormState(newFormState);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let data = structuredClone(formState);
+        let data = Object.assign({}, formState);
         for (let field in data) {
             if (field !== "week") {
                 data[field] = data[field].map((elmt, idx) => {
