@@ -14,7 +14,7 @@ const QueenInfoContainer = () => {
     
     
     return (
-        <div>
+        <div className="queenInfoContainer">
             {queen ?
                 <QueenInfo queen={queen}/>
                 : <p>Loading...</p>

@@ -16,7 +16,7 @@ const PlayerSignup = () => {
     }
 
     const handleCheckChange = (idx) => {
-        let newFormState = structuredClone(formState);
+        let newFormState = Object.assign({}, formState);
         // Don't allow new checkmarks if there are already 5
         if (!newFormState.playerQueens[idx]) {
             if (newFormState.playerQueens.filter(elmt => elmt).length < 5) {
@@ -25,13 +25,12 @@ const PlayerSignup = () => {
         } else {
             newFormState.playerQueens[idx] = !newFormState.playerQueens[idx];
         }
-        console.log(newFormState);
         setFormState(newFormState);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let data = structuredClone(formState);
+        let data = Object.assign({}, formState);
         data.playerQueens = data.playerQueens.map((elmt, idx) => {
             if (elmt) {
                 return queens[idx].queen_id;
@@ -72,16 +71,17 @@ const PlayerSignup = () => {
                 <label className="formLabel formText">Name
                     <input type="text" value={formState.name} id="name" name="name" onChange={handleNameChange}/>
                 </label>
-                <label className="formLabel formCheckboxContainer">Choose 5 Queens
+                <div className="formLabel formCheckboxContainer">
+                    <p className="checkboxLabel">Choose 5 Queens</p>
                     {queens.map((queen, idx) => {
                         return (
-                            <div className="checkboxRow" key={queen.queen_id}>
-                                <input type="checkbox" id={idx} name="queen" value={queen.queen_name} checked={formState.playerQueens[idx]} onClick={() => handleCheckChange(idx)}/>
-                                <label key={queen.queen_id} className="formCheckbox"> {queen.queen_name}</label>
-                            </div>
+                            <label key={queen.queen_id} className="formCheckbox"> 
+                                <input type="checkbox" id={idx} name="queen" value={queen.queen_name} checked={formState.playerQueens[idx]} onChange={() => handleCheckChange(idx)}/>
+                                <p>{queen.queen_name}</p>
+                            </label>
                         )
                     })}
-                </label>
+                </div>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
