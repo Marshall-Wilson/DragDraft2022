@@ -45,6 +45,7 @@ nav .logo {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .infoRow {
