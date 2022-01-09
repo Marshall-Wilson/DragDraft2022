@@ -1,3 +1,4 @@
+-- Structure and code for generating database
 CREATE DATABASE drag_draft_2022;
 
 CREATE TABLE queens (

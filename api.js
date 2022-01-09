@@ -92,6 +92,7 @@ app.post('/api/players', (req, res) => {
 
 });
 
+// Route unspecified endpoints to client 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
 });

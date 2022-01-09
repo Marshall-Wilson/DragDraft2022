@@ -4,7 +4,7 @@ const Admin = () => {
     const [queens, setQueens] = useState([]);
     const [formState, setFormState] = useState({
         week: 1,
-        maxiWinners: [],
+        maxiWinners: [], // Array of "checked" boolean for each queen
         miniWinners: [],
         lsWinners: [],
         elims: [],
@@ -24,6 +24,7 @@ const Admin = () => {
         setFormState(newFormState);
     }
 
+    // Parse/validate data and submit new week to database on submit
     const handleSubmit = (e) => {
         e.preventDefault();
         let data = Object.assign({}, formState);
@@ -48,6 +49,7 @@ const Admin = () => {
         })
     }
 
+    // Retrieve queen data on mount
     useEffect(() => {
         fetch('/api/queens', {
             method: 'GET'

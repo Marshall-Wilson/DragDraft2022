@@ -11,8 +11,7 @@ const QueenInfoContainer = () => {
         .then(res => res.json())
         .then(resQueen => setQueen(resQueen));
     }, [params])
-    
-    
+
     return (
         <div className="queenInfoContainer">
             {queen ?

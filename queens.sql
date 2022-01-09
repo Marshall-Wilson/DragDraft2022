@@ -1,3 +1,4 @@
+-- Code for inputting season 14 queens
 INSERT INTO queens 
     (queen_name, 
     maxi_wins, 

@@ -17,17 +17,8 @@ body {
     justify-content: center;
 }
 
-form {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
 
-.formLabel {
-    width: 100%;
-}
+/* Navigation Header Styles */
 
 .siteNav {
     margin-top: 25px;
@@ -38,6 +29,9 @@ form {
 nav .logo {
     margin: 0 auto;
 }
+
+
+/* General page and information layout styles */
 
 .pageContainer {
     width: 85%;
@@ -58,6 +52,9 @@ nav .logo {
     align-items: center;
     justify-content: space-around;
 }
+
+
+/* Queen display styles */
 
 .queenRow,
 .queenRow:visited,
@@ -81,6 +78,9 @@ nav .logo {
     margin-right: 15px;
 }
 
+
+/* Player Display Styles */
+
 .playerRow .playerName {
     margin: 0;
     text-align: center;
@@ -102,6 +102,9 @@ nav .logo {
     width: 100%;
     text-align: center;
 }
+
+
+/* Team selection styles */
 
 select {
     background-color: white;
@@ -130,6 +133,9 @@ select {
     text-align: center;
 }
 
+
+/* Week Styles */
+
 .weeks .weekField {
     margin-bottom: 7px;
 }
@@ -138,12 +144,20 @@ select {
     width: 100%;
 }
 
+
+/* Signup and Admin form styling  */
+
 form {
+    width: 100%;
     margin-left: 15px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+}
+
+.formLabel {
+    width: 100%;
 }
 
 form .formText {
@@ -180,6 +194,9 @@ form .formCheckbox input {
     border: none;
 }
 
+
+/* Individual Queen Info Page Styles */
+
 .queenInfoContainer {
     display: flex;
     justify-content: center;
@@ -214,7 +231,8 @@ form .formCheckbox input {
 }
 
 
-/* Position and sizing of burger button */
+/* *** Burger Menu Styling ***  
+Position and sizing of burger button */
 
 .bm-burger-button {
     position: fixed;

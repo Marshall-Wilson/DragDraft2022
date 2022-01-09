@@ -4,6 +4,7 @@ import PlayerRow from "./PlayerRow.jsx"
 const LeaderBoard = () => {
     const [players, setPlayers] = useState([]);
 
+    // Retrieve current players on mount
     useEffect(() => {
         fetch('/api/players', {
                 method: 'GET'

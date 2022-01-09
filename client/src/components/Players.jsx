@@ -10,6 +10,7 @@ const Players = () => {
         setSelected(e.target.value);
     }
 
+    // Retrieve queens and players on mount
     useEffect(() => {
         fetch('/api/queens', {
             method: 'GET'

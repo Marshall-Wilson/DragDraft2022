@@ -4,6 +4,7 @@ import QueenRow from "./QueenRow.jsx"
 const Queens = () => {
     const [queens, setQueens] = useState([]);
 
+    // Retrieve queens list on mount
     useEffect(() => {
         fetch('/api/queens', {
             method: 'GET'

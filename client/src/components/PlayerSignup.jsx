@@ -28,6 +28,7 @@ const PlayerSignup = () => {
         setFormState(newFormState);
     }
 
+    // Validate data and submit new player to api
     const handleSubmit = (e) => {
         e.preventDefault();
         let data = Object.assign({}, formState);
@@ -51,6 +52,7 @@ const PlayerSignup = () => {
         }
     }
 
+    // Retrieve queens list on mount
     useEffect(() => {
         fetch('/api/queens', {
             method: 'GET'

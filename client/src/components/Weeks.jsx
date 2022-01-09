@@ -12,6 +12,7 @@ const Weeks = () => {
         setSelectedWeek(weeks.find(week => week.week_id === Number(e.target.value)));
     }
 
+    // Retrieve queens list and weeks list on mount
     useEffect(() => {
         fetch('/api/queens', {
             method: 'GET'
