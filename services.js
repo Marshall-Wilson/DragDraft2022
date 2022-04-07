@@ -9,34 +9,38 @@ const updateScores = (week) => {
     })
 }
 
+const updateQueen = async(queen, week) => {
+    // update relevant fields
+    if (week.elims.includes(queen.queen_id)) {
+        queen.elim_week = week.week_number;
+    }
+    if (week.maxi_winner.includes(queen.queen_id)) {
+        queen.maxi_wins += 1
+    }
+    if (week.mini_winner.includes(queen.queen_id)) {
+        queen.mini_wins += 1
+    }
+    if (week.ls_winner.includes(queen.queen_id)) {
+        queen.ls_wins += 1
+    }
+    if (week.top_three.includes(queen.queen_id)) {
+        queen.top_three += 1
+    }
+    if (week.winner.includes(queen.queen_id)) {
+        queen.winner += 1
+    }
+
+    // update queen in db
+    const values = [queen.maxi_wins, queen.mini_wins, queen.ls_wins, queen.top_three, queen.winner, queen.elim_week, queenScore(queen), queen.queen_id]
+    await pool.query("UPDATE queens SET maxi_wins = $1, mini_wins = $2, ls_wins = $3, top_three = $4, winner = $5, elim_week = $6, total_points = $7 WHERE queen_id = $8", values);
+}
+
 // Update all db queen entries with the accomplishments from a week
 const updateQueens = async(week) => {
     const queens = await pool.query("SELECT * FROM queens;");
     // for each queen
     for (let queen of queens.rows) {
-        // update relevant fields
-        if (week.elims.includes(queen.queen_id)) {
-            queen.elim_week = week.week_number;
-        }
-        if (week.maxi_winner.includes(queen.queen_id)) {
-            queen.maxi_wins += 1
-        }
-        if (week.mini_winner.includes(queen.queen_id)) {
-            queen.mini_wins += 1
-        }
-        if (week.ls_winner.includes(queen.queen_id)) {
-            queen.ls_wins += 1
-        }
-        if (week.top_three.includes(queen.queen_id)) {
-            queen.top_three += 1
-        }
-        if (week.winner.includes(queen.queen_id)) {
-            queen.winner += 1
-        }
-
-        // update queen in db
-        const values = [queen.maxi_wins, queen.mini_wins, queen.ls_wins, queen.top_three, queen.winner, queen.elim_week, queenScore(queen), queen.queen_id]
-        await pool.query("UPDATE queens SET maxi_wins = $1, mini_wins = $2, ls_wins = $3, top_three = $4, winner = $5, elim_week = $6, total_points = $7 WHERE queen_id = $8", values);
+        updateQueen(queen, week);
     }
 }
 
@@ -64,5 +68,24 @@ const queenScore = (queen) => {
     return (3 * queen.maxi_wins) + (1 * queen.mini_wins) + (2 * queen.ls_wins) + (3 * queen.top_three) + (5 * queen.winner);
 }
 
+const updateAll = async() => {
+    const queens = await pool.query("SELECT * FROM queens;");
+    const weeks = await pool.query("SELECT * FROM weeks;");
+    for (let queen of queens.rows) {
+        queen.maxi_wins = 0;
+        queen.mini_wins = 0;
+        queen.ls_wins = 0;
+        queen.top_three = 0;
+        queen.winner = 0;
+        queen.elim_week = null;
+        queen.total_points = 0
 
-module.exports = updateScores;
+        for (let week of weeks.rows) {
+            await updateQueen(queen, week);
+        }
+    }
+    await updatePlayers();
+}
+
+exports.updateScores = updateScores;
+exports.updateAll = updateAll;

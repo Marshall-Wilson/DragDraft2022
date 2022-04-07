@@ -1,7 +1,7 @@
 const express = require('express'); // import express module (simplifies routing/requests, among other things)
 const cors = require('cors'); // import the CORS library to allow Cross-origin resource sharing
 const path = require("path");
-const updateScores = require('./services.js')
+const services = require('./services.js')
 
 const app = express(); // create an instance of the express module (app is the conventional variable name used)
 const PORT = process.env.PORT || 9000; // use either the host env var port (PORT) provided by Heroku or the local port (5000) on your machine
@@ -62,7 +62,7 @@ app.post('/api/weeks', (req, res) => {
     const values = [body.week, body.maxiWinners, body.miniWinners, body.lsWinners, body.elims, body.topThree, body.winner]
     pool.query("INSERT INTO weeks (week_number, maxi_winner, mini_winner, ls_winner, elims, top_three, winner) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;", values)
         .then(newWeek => {
-            updateScores(newWeek.rows[0])
+            services.updateScores(newWeek.rows[0])
                 .then(message => res.send(newWeek.rows[0]));
         })
         .catch(err => res.status(500).send(err));
@@ -90,6 +90,13 @@ app.post('/api/players', (req, res) => {
         .then(new_player => res.send(new_player.rows[0]))
         .catch(err => res.status(500).send(err));
 
+});
+
+app.get('/api/update', (req, res) => {
+    pool.query("SELECT * FROM weeks;").then(x => {
+        services.updateAll();
+        res.send(x);
+    })
 });
 
 // Route unspecified endpoints to client 
